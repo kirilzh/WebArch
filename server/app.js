@@ -1,13 +1,13 @@
-const MongoClient = require('mongodb').MongoClient,
-  assert = require('assert'),
-  request = require('request');
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
+const request = require('request');
 
 request.get('http://localhost:27017/test').on('response', function(response){
     console.log(response.statusCode);
     console.log(response.headers['content-type'])
   })
 
-//Connection url
+// Connection url
 const url = 'mongodb://localhost:27017/test';
 
 var insertDocuments = function(db, callback) {
@@ -25,7 +25,7 @@ var insertDocuments = function(db, callback) {
   });
 }
 
-//use connect method to connect to the server
+// use connect method to connect to the server
 MongoClient.connect(url, function(err, db){
   assert.equal(null, err);
   console.log("connection successful to the server");
