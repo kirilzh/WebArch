@@ -1,20 +1,19 @@
-var http = require("http"),
-  url = require("url");
+const http = require('http');
+const express = require('express');
+const fs = require('fs');
+const path = require('path');
+// const url = require('url');
 
-function start(route) {
-  function onRequest(req, res){
-    var pathname = url.parse(req.url).pathname;
-    console.log("Request for " + pathname + " received.");
+const PORT = 8888;
+const app = express();
 
-    route(pathname);
+app.use('/build', express.static(path.join(__dirname, '../build')));
 
-    res.writeHead(200, {"Content-Type": "text/plain"});
-    res.write("Hello World!");
-    res.end();
-  }
 
-  http.createServer(onRequest).listen(8888);
-  console.log("Server is running");
-}
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../index.html'));
+});
 
-module.exports.start = start;
+
+app.listen(PORT);
+// module.exports.start = start;
