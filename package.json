@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/kirilzh/WebArch#readme",
   "dependencies": {
+    "express": "^4.16.1",
     "mongodb": "^2.2.31",
     "react": "^16.0.0",
     "react-bootstrap": "^0.31.3",
