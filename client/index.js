@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 // import Button from 'react-bootstrap/lib/Button';
 import { FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 
@@ -12,6 +13,13 @@ function FieldGroup({ id, label, help, ...props }) {
     </FormGroup>
   );
 }
+
+// props validation
+FieldGroup.propTypes = {
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  help: PropTypes.string.isRequired,
+};
 
 const element = (
   <div>
