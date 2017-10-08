@@ -1,10 +1,15 @@
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-const PORT = 8888;
 const app = express();
 const mongoDB = 'mongodb://localhost:27017/test';
+
+mongoose.connect(mongoDB, {
+  useMongoClient: true,
+});
+
 const Schema = mongoose.Schema;
 const usersSchema = new Schema({
   name: String,
@@ -12,19 +17,7 @@ const usersSchema = new Schema({
   email: String,
 });
 
-const Users = mongoose.model('Users', usersSchema);
-const firstUser = new Users({
-  name: 'Kiril',
-  password: 'hash',
-  email: 'knz140@aubg.edu',
-});
-firstUser.save((err) => {
-  if (err) console.log(err);
-});
-
-mongoose.connect(mongoDB, {
-  useMongoClient: true,
-});
+const User = mongoose.model('Users', usersSchema);
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error'));
@@ -46,5 +39,22 @@ app.get('/users', (req, res) => {
   });
 });
 
-app.listen(PORT);
-// module.exports.start = start;
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: false,
+}));
+// app.use(express.json());
+// app.use(express.urlencoded());
+app.post('/login', (req, res) => {
+  if (!req.body) return res.status(400);
+  new User({
+    name: req.body.username,
+    password: req.body.password,
+    email: req.body.email,
+  }).save((err) => {
+    if (err) console.log(err);
+  });
+  res.end('Post received ');
+});
+
+app.listen('8888');
