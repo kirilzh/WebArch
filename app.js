@@ -17,6 +17,8 @@ mongoose.connect('mongodb://localhost:27017/test');
 
 const routes = require('./routes/index');
 const users = require('./routes/users');
+const playground = require('./routes/playground');
+const profile = require('./routes/profile');
 
 // Init Index
 const app = express();
@@ -61,7 +63,7 @@ app.use(expressValidator({
     let formParam = root;
 
     while (namespace.length) {
-      formParam += '[' + namespace.shift() + ']';
+      formParam += path.join(`${'['}`, namespace.shift(), `${']'}`);
     }
     return {
       param: formParam,
@@ -86,6 +88,8 @@ app.use((req, res, next) => {
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/playground', playground);
+app.use('/profile', profile);
 
 app.set('port', process.env.PORT || 3000);
 
