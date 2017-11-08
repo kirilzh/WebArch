@@ -15,6 +15,11 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+// Forgotten password
+router.get('/forgotpassword', (req, res) => {
+  res.render('forgotpassword');
+});
+
 // Register User
 router.post('/register', (req, res) => {
   const aubgid = req.body.aubgid;
