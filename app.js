@@ -7,12 +7,12 @@ const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+// const LocalStrategy = require('passport-local').Strategy;
 // const mongo = require('mongodb');
 const mongoose = require('mongoose');
 // const fs = require('fs');
 
-const db = mongoose.connection;
+// const db = mongoose.connection;
 mongoose.connect('mongodb://localhost:27017/test');
 
 const routes = require('./routes/index');
@@ -37,12 +37,26 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 
-// takes the bundled js from webpack and sends it to the server
-// app.use('/build', express.static(path.join(__dirname, '../build')));
-// app.use('/client', express.static(path.join(__dirname, '../client')));
+// serve the tree
+// function getDirectories(dir) {
+//   return fs.readdirSync(dir).filter((file) => {
+//     return fs.statSync(dir, `${'/'} ${file}`).isDirectory();
+//   });
+// }
 
-// Set Static Folder
-app.use(express.static(path.join(__dirname, 'public')));
+// console.log(getDirectories(__dirname, '/public'));
+
+// const getDirs = (rootDir, cb) => {
+//   fs.readdir(rootDir, (err, files) => {
+//     const dir = [];
+//     for (let index = 0; index < files.length; ++index) {
+//       const file = files[index];
+//       if (file[0] !== '.') {
+//
+//       }
+//     }
+//   })
+// }
 
 // Express Session
 app.use(session({
@@ -94,89 +108,5 @@ app.use('/profile', profile);
 app.set('port', process.env.PORT || 3000);
 
 app.listen(app.get('port'), () => {
-  console.log('Server started on port ' + app.get('port'));
+  console.log('Server started on port ', app.get('port'));
 });
-
-// mongoose.connect(mongoDB, {
-//   useMongoClient: true,
-// });
-//
-// const Schema = mongoose.Schema;
-// const usersSchema = new Schema({
-//   name: String,
-//   password: String,
-//   email: String,
-// });
-//
-// const fileSchema = new Schema({
-//   userID: String,
-//   name: String,
-//   fileURL: String,
-//   file: {
-//     // atob var decodedData = window.atob(encodedData);
-//     data: new Buffer('base64'),
-//     contentType: String,
-//   },
-// });
-//
-// const User = mongoose.model('Users', usersSchema);
-// const File = mongoose.model('Files', fileSchema);
-//
-// const site = new File();
-// const filePath = '/home/kiril/Downloads/img.jpg';
-// site.name = 'img.jpg';
-// site.file.data = fs.readFileSync(filePath);
-// site.file.contentType = 'image/jpg';
-// site.fileURL = filePath;
-// // site.save((err) => {
-// //   if (err) throw err;
-// //   console.error('saved image to mongo');
-// // });
-//
-// db.on('error', console.error.bind(console, 'MongoDB connection error'));
-// db.once('open', () => {
-//   console.log('connected');
-// });
-//
-//
-// // loads the main HTML of the project
-// app.get('/', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../index.html'));
-// });
-//
-// app.get('/users', (req, res) => {
-//   mongoose.model('Users').find((err, users) => {
-//     res.send(users);
-//   });
-// });
-//
-// app.get('/files', (req, res) => {
-//   mongoose.model('Files').find((err, files) => {
-//     res.send(files);
-//   });
-// });
-//
-//
-// app.post('/login', (req, res) => {
-//   if (!req.body) return res.status(400);
-//   new User({
-//     name: req.body.username,
-//     password: req.body.password,
-//     email: req.body.email,
-//   }).save((err) => {
-//     if (err) console.log(err);
-//   });
-//   res.end('Post received ');
-// });
-//
-// app.post('/files', (req, res) => {
-//   if (!req.body) return res.status(400);
-//   new File({
-//     name: req.body.name,
-//   }).save((err) => {
-//     if (err) console.log(err);
-//   });
-//   res.end('File received');
-// });
-//
-// app.listen('8888');
