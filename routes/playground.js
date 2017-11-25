@@ -4,14 +4,29 @@ const path = require('path');
 const fs = require('fs');
 
 let id = '';
+let temp = '';
 const router = express.Router();
 
 // Get Homepage
 router.get('/', (req, res) => {
   id = req.user.aubgid;
   // Set Static Folder
-  router.use(express.static(path.join(__dirname, id)));
+  router.use(`/${id}`, express.static(path.join(__dirname, id)));
   res.render('playground');
+});
+
+// send the user id to the browser
+// router.get('/:id', (req, res) => {
+//   res.send({ message: id });
+// });
+
+
+router.post('/docs', (req, res) => {
+  temp = req.body;
+});
+
+router.get('/docs', (req, res) => {
+  res.send(JSON.parse(temp.result));
 });
 
 // Upload files

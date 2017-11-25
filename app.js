@@ -24,6 +24,7 @@ const profile = require('./routes/profile');
 const app = express();
 // const mongoDB = 'mongodb://localhost:27017/test';
 
+app.use(express.static(path.join(__dirname, 'public')));
 
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
