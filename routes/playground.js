@@ -23,10 +23,29 @@ router.get('/', (req, res) => {
 
 router.post('/docs', (req, res) => {
   temp = req.body;
+  fs.truncate('/100115383/computer.html', 0, () => {
+    fs.writeFile(path.join(__dirname, `${'/'}${id}`, '/computer.html'), temp[0], (err) => {
+      if (err) {
+        console.log(`'Error writing file: ' ${err}`);
+      }
+    });
+  });
+  fs.truncate('/100115383/index.css', 0, () => {
+    fs.writeFile(path.join(__dirname, `${'/'}${id}`, '/index.css'), temp[1], (err) => {
+      if (err) {
+        console.log(`'Error writing file: ' ${err}`);
+      }
+    });
+  });
 });
 
 router.get('/docs', (req, res) => {
-  res.send(JSON.parse(temp.result));
+  const HTML = temp[0];
+  const CSS = `${'<style>'}${temp[1]}${'</style>'}`;
+  const n = HTML.search('<head>') + 6;
+  const result = [HTML.slice(0, n), CSS, HTML.slice(n)].join('');
+  res.send(result);
+  // res.send(JSON.parse(temp.result));
 });
 
 // Upload files
