@@ -1,18 +1,29 @@
 $(document).ready(() => {
-  $.ajax({
-    url: 'http://localhost:3000/playground/100115383/index.css',
-    dataType: 'text',
+  let userId = $.ajax({
+    url: '/playground/id',
+    dataType: 'json',
     success: (data) => {
-      $('#userCSS').text(data);
+      userId = data.message;
+      console.log(userId);
     },
   });
-  $.ajax({
-    url: 'http://localhost:3000/playground/100115383/computer.html',
-    dataType: 'text',
-    success: (data) => {
-      $('#userHTML').text(data);
-    },
+  $.when(userId).done(() => {
+    $.ajax({
+      url: `playground/${userId}/index.css`,
+      dataType: 'text',
+      success: (data) => {
+        $('#userCSS').text(data);
+      },
+    });
+    $.ajax({
+      url: `playground/${userId}/index.html`,
+      dataType: 'text',
+      success: (data) => {
+        $('#userHTML').text(data);
+      },
+    });
   });
+
   $('#save').on('click', () => {
     const project = {};
     project[0] = $('#userHTML').val();
