@@ -1,11 +1,11 @@
-<h2 class="page-header">Account Login</h2>
-<form method="post" action="/users/login">
-  <div class="form-group">
-    <input type="text" class="form-control" name="aubgid" placeholder="AUBGID">
-  </div>
-  <div class="form-group">
-    <input type="password" class="form-control" name="password" placeholder="Password">
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-  <a href="/users/forgotpassword">Forgot Password</a>
-</form>
+<div class="login">
+  <h1>Account Login</h1>
+  <form method="post" action="/users/login">
+    <div class="form-group">
+      <input type="text" name="aubgid" placeholder="AUBGID">
+      <input type="password" name="password" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-primary btn-block btn-large">Let me in</button>
+    <a href="/users/forgotpassword">Forgot Password</a>
+  </form>
+</div>

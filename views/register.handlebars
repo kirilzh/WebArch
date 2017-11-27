@@ -1,27 +1,19 @@
-<h2 class="page-header">Register</h2>
 {{#if errors}}
   {{#each errors}}
     <div class="alert alert-danger">{{msg}}</div>
   {{/each}}
 {{/if}}
+<div class="register">
+  <h1>Register</h2>
 <form method="post" action="/users/register">
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="AUBG ID" name="aubgid">
+    <input type="text" placeholder="AUBG ID" name="aubgid">
+    <input type="text" placeholder="First Name" name="firstName">
+    <input type="text" placeholder="Last Name" name="lastName">
+    <input type="email" placeholder="Email" name="email">
+    <input type="password" placeholder="Password" name="password">
+    <input type="password" placeholder="Verify Password" name="vpassword">
   </div>
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="First Name" name="firstName">
-  </div>
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="Last Name" name="lastName">
-  </div>
-  <div class="form-group">
-    <input type="email" class="form-control" placeholder="Email" name="email">
-  </div>
-  <div class="form-group">
-    <input type="password" class="form-control" placeholder="Password" name="password">
-  </div>
-  <div class="form-group">
-    <input type="password" class="form-control" placeholder="Verify Password" name="vpassword">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary btn-block btn-large">Submit</button>
 </form>
+</div>

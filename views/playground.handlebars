@@ -1,14 +1,16 @@
-<h2 class="page-header">Rendering Dash</h2>
 <div class="container">
-  <div class="row">
-    <form action="/playground" enctype="multipart/form-data" method="post">
-      <input type="file" name="upload" multiple>
-      <input type="submit" value="Upload">
-    </form>
+  <div class="playground">
+    <div class="row">
+      <form action="/playground" enctype="multipart/form-data" method="post">
+        <input type="file" name="upload" multiple>
+        <!-- <input type="submit" value="Upload"> -->
+        <button type="submit" class="btn btn-primary btn-block btn-large">Upload</button>
+      </form>
+    </div>
   </div>
   <div class="row">
-    <a class="nav-link" href="#">Save</a>
-    <a class="nav-link" href="#">Run</a>
+    <input id="save" type="button" value="Save" />
+    <input id="run" type="button" value="Run" />
     </nav>
   </div>
   <div class="row">

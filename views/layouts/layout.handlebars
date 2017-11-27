@@ -8,26 +8,44 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css">
-  <!-- <link rel="stylesheet" href="/css/style.css" /> -->
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+  <script src=/js/contentLoader.js></script>
+
 </head>
 
 <body>
   <div class="container">
-    <div class="header clearfix">
-      <nav>
-        <ul class="nav nav-pills pull-right">
-          {{#if user}}
-            <li role="presentation"><a href="/">Home</a></li>
-            <li role="presentation"><a href="/users/logout">Log Out</a></li>
-          {{else}}
-            <li role="presentation"><a href="/users/login">Log In</a></li>
-            <li role="presentation"><a href="/users/register">Register</a></li>
-          {{/if}}
-        </ul>
-      </nav>
-      <h3 class="text-muted">Web Arch</h3>
+    <!-- Navbar -->
+    <div class="row text-center">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-8">
+        <div class="header clearfix">
+          <nav>
+            <ul class="nav justify-content-end">
+              {{#if user}}
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link active" href="/">Home</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link" href="/users/logout">Log Out</a>
+                </li>
+              {{else}}
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link" href="/users/login">Log In</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link" href="/users/register">Register</a>
+                </li>
+              {{/if}}
+            </ul>
+          </nav>
+        </div>
+      </div>
     </div>
 
+    <!-- Message Box -->
     <div class="row">
       <div class="col-lg-12">
         {{#if success_msg}}
@@ -39,14 +57,15 @@
         {{#if error}}
           <div class="alert alert-daenger">{{error}}</div>
         {{/if}}
-
-        {{{body}}}
       </div>
     </div>
+    {{{body}}}
+    </ul>
+    </nav>
 
-    <footer class="footer">
-      <p>&copy; 2016 Company, Inc.</p>
-    </footer>
+    <!-- <footer class="footer">
+      <p>&copy; 2017 Company, Inc.</p>
+    </footer> -->
 
   </div>
 </body>
